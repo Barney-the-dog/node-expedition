@@ -7,27 +7,32 @@ const rockets = fs.readFileSync(PATH + '/rockets.txt', 'utf-8').split('\r\n').ma
 
 //позволяет выбрать самого опытного капитана
 function getRightCaptain() {
-let capt = [];
-for (let i=1; i<crew.length; i++) {
-  if (crew[i].includes('Капитан')) {
-    capt.push(crew[i]);
-}
-}
-let arrBest = capt.sort((a,b) => +b[3] - +a[3]);
-return arrBest[0].join(', ');
+// let capt = [];
+// for (let i=1; i<crew.length; i++) {
+//   if (crew[i].includes('Капитан')) {
+//     capt.push(crew[i]);
+// }
+// }
+// let arrBest = capt.sort((a,b) => +b[3] - +a[3]);
+// return arrBest[0].join(', ');
+
+let capt = crew.filter((el) => el.includes('Капитан')).sort((a,b) => +b[3] - +a[3])
+return capt[0].join(', ')
 }
 console.log(getRightCaptain())
 
 //позволяет выбрать самого опытного врача среди женщин
 function getRightDoc() {
-  let dr = [];
-  for (let i=1; i<crew.length; i++) {
-    if (crew[i].includes('ж')&&crew[i].includes('Врач')) {
-      dr.push(crew[i]);
-  }
-  }
-  let drBest = dr.sort((a,b) => +b[3] - +a[3]);
-  return drBest[0].join(', ');
+  // let dr = [];
+  // for (let i=1; i<crew.length; i++) {
+  //   if (crew[i].includes('ж')&&crew[i].includes('Врач')) {
+  //     dr.push(crew[i]);
+  // }
+  // }
+  // let drBest = dr.sort((a,b) => +b[3] - +a[3]);
+  // return drBest[0].join(', ');
+  let drBest = crew.filter((el) => el.includes('Врач')&& el.includes(('ж'))).sort((a,b) => +b[3] - +a[3])
+  return drBest[0].join(', ')
   }
   console.log(getRightDoc())
 
